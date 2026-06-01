@@ -3,258 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Details</title>
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --bg-color: #f8f9fa;
-            --text-color: #333;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        h1, h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-
-        /* Media Gallery */
-        .gallery-container {
-            margin-bottom: 30px;
-        }
-
-        .image-grid {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr); /* Forces exactly 3 equal columns */
-			gap: 15px;
-			margin-bottom: 20px;
-		}
-
-		.thumb-container, .video-container {
-			overflow: hidden;
-			border-radius: 6px;
-			cursor: pointer;
-			box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-			height: 180px; /* Slightly taller for better visibility */
-		}
-
-		.thumb-container img, .video-container video {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			transition: transform 0.3s ease;
-		}
-
-		.thumb-container:hover img {
-			transform: scale(1.05);
-		}
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: 6px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-top: 15px;
-        }
-
-        .video-wrapper video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background: #000;
-        }
-
-        /* Lightbox/Zoom Modal */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-            cursor: zoom-out;
-        }
-
-        .lightbox img {
-            max-width: 90%;
-            max-height: 85%;
-            border-radius: 4px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            animation: zoomIn 0.25s ease;
-        }
-
-        @keyframes zoomIn {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        /* Links & Buttons */
-        .specs-link {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 10px 20px;
-            background-color: var(--accent-color);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            transition: background 0.2s;
-        }
-
-        .specs-link:hover {
-            background-color: #2980b9;
-        }
-
-        /* Details & Remarks */
-        .specs-div {
-            background: #fdfdfd;
-            border: 1px solid #e0e0e0;
-            padding: 20px;
-            border-radius: 6px;
-            margin-bottom: 25px;
-        }
-
-        .specs-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .specs-table td {
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .specs-table td:first-child {
-            font-weight: bold;
-            color: #666;
-            width: 30%;
-        }
-
-        .remarks-list {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .remarks-list li {
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 10px;
-            font-size: 1.1srem;
-        }
-
-        .remarks-list li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #2ecc71;
-            font-weight: bold;
-        }
-    </style>
+    <title>Selling my car - my litle comapanion</title>
+	<link rel="stylesheet" href="car.css">
 </head>
 <body>
 
 <div class="container">
-    <h1>Mitsubishi Space Star Invite</h1>
+
+    <header>
+        <h1>Mitsubishi Space Star 1.2 invite</h1>
+		<h4>A small car with a big heart, and the most loyal companion I had in the Balkans.</h4>
+        <div class="price-tag">6 800€</div>
+    </header>
 
     <div class="gallery-container">
-        <h3>Photo Gallery (Click to zoom)</h3>
-        <div class="image-grid">
-            <div class="thumb-container" onclick="zoomImage(this)"><img src="foto1.jpg"></div>
-            <div class="thumb-container" onclick="zoomImage(this)"><img src="foto2.jpg"></div>
-            <div class="thumb-container" onclick="zoomImage(this)"><img src="foto3.jpg"></div>
-            <div class="thumb-container" onclick="zoomImage(this)"><img src="foto4.png"></div>
-            <div class="thumb-container" onclick="zoomImage(this)"><img src="foto5.jpg"></div>
-            <div class="thumb-container" onclick="zoomImage(this)"><img src="foto2.jpg"></div>
+        <div class="main-view">
+            <img id="viewfinder" src="car1.png" alt="Vehicle Main View">
+        </div>
+        <div class="thumbnails">
+            <img src="car1.png" class="active" onclick="previewImage(this)">
+            <img src="car2.png" onclick="previewImage(this)">
+            <img src="car3.png" onclick="previewImage(this)">
+            <img src="car4.png" onclick="previewImage(this)">
+            <img src="car5.png" onclick="previewImage(this)">
+            <img src="car6.png" onclick="previewImage(this)">
+            <img src="car7.png" onclick="previewImage(this)">
+        </div>
+        </div>
+    </div>
+
+    <div class="content-grid">
+        
+        <div>
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <div class="spec-label">YEAR</div>
+                    <div class="spec-value">Oct/2020</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-label">Mileage</div>
+                    <div class="spec-value">10,450 mi</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-label">Engine</div>
+                    <div class="spec-value">1200cm³ DOHC MIVEC AS&G</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-label">orsepower</div>
+                    <div class="spec-value">80 HP / 59 kW @ 6000 rpm</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-label">Drive:</div>
+                    <div class="spec-value">5 speed Manual</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-label">Drivetrain</div>
+                    <div class="spec-value">FWD</div>
+                </div>
+            </div>
+			<div class="remarks-box">
+				<p style="font-size: 1.4rem; font-style: italic; color: #dfb76c; text-align: center; margin-bottom: 25px;">
+					"Selling my car—my little, honest companion."
+				</p>
+				
+				<hr style="border: 0; border-top: 1px solid #2a2a30; margin-bottom: 20px;">
+
+				<ul style="list-style-type: '✓ '; padding-left: 20px; color: var(--text-main); font-size: 1.05rem;">
+					<li style="margin-bottom: 10px;"><strong>Tax-free:</strong> Car is without taxes.</li>
+					<li style="margin-bottom: 10px;"><strong>Dealership Maintained:</strong> Always serviced exclusively at the official dealer.</li>
+					<li style="margin-bottom: 10px;"><strong>Two Sets of Tires:</strong> Comes with both Summer + Winter sets.</li>
+					<li style="margin-bottom: 10px;"><strong>Brand New Summer Tires:</strong> Never used, completely fresh.</li>
+					<li style="margin-bottom: 15px;"><strong>Pristine Interior:</strong> Back seats have never been used (no passengers available 😉).</li>
+				</ul>
+
+				<p style="margin-top: 20px; font-size: 0.95rem; color: var(--text-muted); background: #221c1c; padding: 12px; border-radius: 6px; border-left: 3px solid #ffcc00;">
+					⚠️ <strong>Full disclosure:</strong> A few minor scratches here and there... TIK (This is Kosovo)! 🇽🇰
+				</p>
+			</div>
+
+            
+            <a href="mailto:frank.baresi@gmail.com" class="btn">Contact Seller / Make an Offer</a>
+            <a href="specs.pdf" target="_blank" class="btn btn-all btn-pdf">📄 Full Tech Specs (PDF)</a>
         </div>
 
-        <h3>Condition</h3>
-        <div class="video-wrapper">
-            <video controls poster="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1000">
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+<!-- RIGHT COLUMN: ALL MEDIA (LOCAL + YOUTUBE SAMPLES) -->
+<div class="video-section">
+    
+    <!-- SECTION 1: YOUR ACTUAL CAR VIDEOS -->
+    <div style="border-bottom: 2px dashed #2a2a30; padding-bottom: 25px; margin-bottom: 10px;">
+        <h3 style="color: #ffffff; margin-bottom: 15px; font-size: 1.1rem; letter-spacing: 0.5px;">📹 Actual Vehicle Videos</h3>
+        
+        <div class="video-card" style="margin-bottom: 15px;">
+            <h4>Exterior Walkaround (Actual Car)</h4>
+            <video controls preload="metadata">
+                <source src="out.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="video-card">
+            <h4>Interior & Cockpit(Actual Car)</h4>
+            <video controls preload="metadata">
+                <source src="in.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
     </div>
 
-    <a href="specs.pdf" target="_blank" class="specs-link">SEE FULL SPECS</a>
-
-    <div id="SPECS" class="specs-div">
-        <h2>SPECS</h2>
-        <table class="specs-table">
-            <tr><td><br>Horsepower:<br></td><td>80 HP / 59 kW @ 6000 rpm</td></tr>
-            <tr><td><br>Fuel type:<br></td><td>Petrol</td></tr>
-            <tr><td><br>Engine :<br></td><td>1200cm³ DOHC MIVEC AS&G</td></tr>
-            <tr><td><br>Drive wheels - Traction:<br></td><td>front - 5 speed Manual</td></tr>
-        </table>		
     </div>
-
-    <div class="remarks-div">
-        <h2>Remarks</h2>
-        <ul class="remarks-list">
-            <li>No tax</li>
-            <li>With 12,000 km</li>
-            <li>Fully serviced in the official dealer</li>
-            <li>Available immediately</li>
-            <li>Android Auto / Apple CarPlay</li>
-            <li>Includes two sets of tires (Winter & Summer: never used)</li>
-            <li>Rear camera</li>
-            <li>Board Computer</li>
-            <li>Rain and Light sensors</li>			
-            <li>Hill Start Assist</li>
-            <li>ASC + TCL + ABS + EBD</li>
-            <li>Eletric and Heated Mirrors</li>
-        </ul>
-    </div>
-</div>
-
-<div id="lightbox" class="lightbox" onclick="closeZoom()">
-    <img id="lightbox-img" src="" alt="Zoomed View">
 </div>
 
 <script>
-    function zoomImage(element) {
-        const imgSrc = element.querySelector('img').src;
-        document.getElementById('lightbox-img').src = imgSrc;
-        document.getElementById('lightbox').style.display = 'flex';
+    function previewImage(element) {
+        // Update main picture source
+        document.getElementById('viewfinder').src = element.src;
+        
+        // Remove active class from all thumbnails
+        const thumbs = document.querySelectorAll('.thumbnails img');
+        thumbs.forEach(thumb => thumb.classList.remove('active'));
+        
+        // Add active class to clicked thumbnail
+        element.classList.add('active');
     }
-
-    function closeZoom() {
-        document.getElementById('lightbox').style.display = 'none';
-    }
-
-    // Close lightbox on Escape key press
-    document.addEventListener('keydown', function(e) {
-        if (e.key === "Escape") {
-            closeZoom();
-        }
-    });
 </script>
 
 </body>
