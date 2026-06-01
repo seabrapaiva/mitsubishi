@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Car Sale</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .price {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #007b3a;
+      margin-bottom: 20px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+    .video {
+      margin-bottom: 20px;
+    }
+    .video iframe,
+    .video video {
+      width: 100%;
+      height: 400px;
+      border-radius: 6px;
+      border: none;
+    }
+    .details {
+      margin-bottom: 10px;
+    }
+    .details h2 {
+      margin-bottom: 10px;
+    }
+    .details ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .details li::before {
+      content: "• ";
+      color: #555;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Mitsubishi Space Star 1.2 2020</h1>
+
+    <div class="price">
+      Preço: 7.000 €
+    </div>
+
+    <!-- Galeria de 5 fotos -->
+    <div class="gallery">
+      <img src="foto1.jpg" alt="Foto 1 do carro">
+      <img src="foto2.jpg" alt="Foto 2 do carro">
+      <img src="foto3.jpg" alt="Foto 3 do carro">
+      <img src="foto4.jpg" alt="Foto 4 do carro">
+      <img src="foto5.jpg" alt="Foto 5 do carro">
+    </div>
+    <div class="video">
+      <!-- Exemplo com ficheiro local -->
+      <video controls>
+        <source src="carro.mp4" type="video/mp4">
+        no HTML5 detected.
+      </video>
+
+      <!-- Exemplo com vídeo do YouTube -->
+      <!-- <iframe 
+        src="https://www.youtube.com/embed/VIDEO_ID" 
+        title="Vídeo do carro" 
+        allowfullscreen>
+      </iframe>
+      -->
+    </div>
+
+    <!-- Caixa de texto com características principais -->
+    <div class="details">
+      <h2>Main specs</h2>
+      <ul>
+        <li>Ano: 2020/li>
+        <li>11.000 km</li>
+        <li>Petrol</li>
+        <li>Manual gear</li>
+        <li>No registration in Kosovo Costums yet</li>
+      </ul>
+    </div>
+
+    <div class="details">
+      <h2></h2>
+      <p>
+      </p>
+    </div>
+
+    <div class="details">
+      <h2>Contacto</h2>
+      <p>
+        email: <a href="mailto:teuemail@example.com">teuemail@example.com</a><br>
+        ou por telefone/WhatsApp: 9xx xxx xxx
+      </p>
+    </div>
+
+    <div class="footer">
+      Página pessoal no GitHub Pages
+    </div>
+  </div>
+</body>
+</html>
