@@ -42,30 +42,30 @@
         }
 
         .image-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
+			display: grid;
+			grid-template-columns: repeat(3, 1fr); /* Forces exactly 3 equal columns */
+			gap: 15px;
+			margin-bottom: 20px;
+		}
 
-        .thumb-container {
-            overflow: hidden;
-            border-radius: 6px;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            height: 120px;
-        }
+		.thumb-container, .video-container {
+			overflow: hidden;
+			border-radius: 6px;
+			cursor: pointer;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+			height: 180px; /* Slightly taller for better visibility */
+		}
 
-        .thumb-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+		.thumb-container img, .video-container video {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 0.3s ease;
+		}
 
-        .thumb-container:hover img {
-            transform: scale(1.05);
-        }
+		.thumb-container:hover img {
+			transform: scale(1.05);
+		}
 
         .video-wrapper {
             position: relative;
@@ -189,8 +189,9 @@
             <div class="thumb-container" onclick="zoomImage(this)"><img src="foto1.jpg"></div>
             <div class="thumb-container" onclick="zoomImage(this)"><img src="foto2.jpg"></div>
             <div class="thumb-container" onclick="zoomImage(this)"><img src="foto3.jpg"></div>
-            <div class="thumb-container" onclick="zoomImage(this)"><img src="foto4.jpg"></div>
+            <div class="thumb-container" onclick="zoomImage(this)"><img src="foto4.png"></div>
             <div class="thumb-container" onclick="zoomImage(this)"><img src="foto5.jpg"></div>
+            <div class="thumb-container" onclick="zoomImage(this)"><img src="foto2.jpg"></div>
         </div>
 
         <h3>Condition</h3>
@@ -211,8 +212,6 @@
             <tr><td><br>Fuel type:<br></td><td>Petrol</td></tr>
             <tr><td><br>Engine :<br></td><td>1200cm³ DOHC MIVEC AS&G</td></tr>
             <tr><td><br>Drive wheels - Traction:<br></td><td>front - 5 speed Manual</td></tr>
-            <tr><td><br>Fuel Consumption combined<br></td><td>4.5l</td></tr>
-            <tr><td><br>Year / Km<br></td><td>10.2020 / 11000/td></tr>
         </table>		
     </div>
 
@@ -220,6 +219,7 @@
         <h2>Remarks</h2>
         <ul class="remarks-list">
             <li>No tax</li>
+            <li>With 12,000 km</li>
             <li>Fully serviced in the official dealer</li>
             <li>Available immediately</li>
             <li>Android Auto / Apple CarPlay</li>
