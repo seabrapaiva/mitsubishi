@@ -1,143 +1,261 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Car Sale</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background-color: #f5f5f5;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-    .price {
-      text-align: center;
-      font-size: 1.6rem;
-      font-weight: bold;
-      color: #007b3a;
-      margin-bottom: 20px;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .gallery img {
-      width: 100%;
-      border-radius: 6px;
-      object-fit: cover;
-    }
-    .video {
-      margin-bottom: 20px;
-    }
-    .video iframe,
-    .video video {
-      width: 100%;
-      height: 400px;
-      border-radius: 6px;
-      border: none;
-    }
-    .details {
-      margin-bottom: 10px;
-    }
-    .details h2 {
-      margin-bottom: 10px;
-    }
-    .details ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .details li::before {
-      content: "• ";
-      color: #555;
-    }
-    .footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #777;
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Details</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        /* Media Gallery */
+        .gallery-container {
+            margin-bottom: 30px;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .thumb-container {
+            overflow: hidden;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            height: 120px;
+        }
+
+        .thumb-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .thumb-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 15px;
+        }
+
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: #000;
+        }
+
+        /* Lightbox/Zoom Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85%;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            animation: zoomIn 0.25s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Links & Buttons */
+        .specs-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .specs-link:hover {
+            background-color: #2980b9;
+        }
+
+        /* Details & Remarks */
+        .specs-div {
+            background: #fdfdfd;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .specs-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .specs-table td:first-child {
+            font-weight: bold;
+            color: #666;
+            width: 30%;
+        }
+
+        .remarks-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .remarks-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            font-size: 1.1srem;
+        }
+
+        .remarks-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2ecc71;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Mitsubishi Space Star 1.2 2020</h1>
 
-    <div class="price">
-      Preço: 7.000 €
+<div class="container">
+    <h1>Mitsubishi Space Star Invite</h1>
+
+    <div class="gallery-container">
+        <h3>Photo Gallery (Click to zoom)</h3>
+        <div class="image-grid">
+            <div class="thumb-container" onclick="zoomImage(this)"><img src="foto1.jpg"></div>
+            <div class="thumb-container" onclick="zoomImage(this)"><img src="foto2.jpg"></div>
+            <div class="thumb-container" onclick="zoomImage(this)"><img src="foto3.jpg"></div>
+            <div class="thumb-container" onclick="zoomImage(this)"><img src="foto4.jpg"></div>
+            <div class="thumb-container" onclick="zoomImage(this)"><img src="foto5.jpg"></div>
+        </div>
+
+        <h3>Condition</h3>
+        <div class="video-wrapper">
+            <video controls poster="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1000">
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
     </div>
 
-    <!-- Galeria de 5 fotos -->
-    <div class="gallery">
-      <img src="foto1.jpg" alt="Foto 1 do carro">
-      <img src="foto2.jpg" alt="Foto 2 do carro">
-      <img src="foto3.jpg" alt="Foto 3 do carro">
-      <img src="foto4.jpg" alt="Foto 4 do carro">
-      <img src="foto5.jpg" alt="Foto 5 do carro">
-    </div>
-    <div class="video">
-      <!-- Exemplo com ficheiro local -->
-      <video controls>
-        <source src="carro.mp4" type="video/mp4">
-        no HTML5 detected.
-      </video>
+    <a href="specs.pdf" target="_blank" class="specs-link">SEE FULL SPECS</a>
 
-      <!-- Exemplo com vídeo do YouTube -->
-      <!-- <iframe 
-        src="https://www.youtube.com/embed/VIDEO_ID" 
-        title="Vídeo do carro" 
-        allowfullscreen>
-      </iframe>
-      -->
+    <div id="SPECS" class="specs-div">
+        <h2>SPECS</h2>
+        <table class="specs-table">
+            <tr><td><br>Horsepower:<br></td><td>80 HP / 59 kW @ 6000 rpm</td></tr>
+            <tr><td><br>Fuel type:<br></td><td>Petrol</td></tr>
+            <tr><td><br>Engine :<br></td><td>1200cm³ DOHC MIVEC AS&G</td></tr>
+            <tr><td><br>Engine :<br></td><td>1200cm³ DOHC MIVEC AS&G</td></tr>
+            <tr><td><br>Drive wheels - Traction:<br></td><td>front - 5 speed Manual</td></tr>
+        </table>		
     </div>
 
-    <!-- Caixa de texto com características principais -->
-    <div class="details">
-  <h2>Especificações Técnicas</h2>
-    <ul>
-      <li>Engine type - Number of cylinders: Inline 3</li>
-      <li>Engine Code: -</li>
-      <li>Fuel type: Petrol</li>
-      <li>Fuel System: Multi-port Injection</li>
-      <li>Engine Alignment: Transverse</li>
-      <li>Engine Position: Front</li>
-      <li>Engine displacement: 1193 cm³ / 72.8 cu-in</li>
-      <li>Bore x Stroke: 75.0 x 90.0 mm (2.95 x 3.54 inches)</li>
-      <li>Number of valves: 12 Valves</li>
-      <li>Aspiration: Naturally-aspirated</li>
-      <li>Compression Ratio: 11.0</li>
-      <li>Horsepower: 80 PS / 79 HP / 59 kW @ 6000 rpm</li>
-      <li>Maximum torque: 106 Nm / 78 lb-ft @ 4000 rpm</li>
-      <li>Drive wheels - Traction - Drivetrain: FWD</li>
-      <li>Transmission Gearbox - Number of speeds: 5 speed Manual</li>
-    </ul>
-  </div>
-
-    <div class="details">
-      <h2>Contacto</h2>
-      <p>
-        email: <a href="mailto:teuemail@example.com">teuemail@example.com</a><br>
-        ou por telefone/WhatsApp: 9xx xxx xxx
-      </p>
+    <div class="remarks-div">
+        <h2>Remarks</h2>
+        <ul class="remarks-list">
+            <li>No tax</li>
+            <li>With 12,000 km</li>
+            <li>Fully serviced in the official dealer</li>
+            <li>Available immediately</li>
+            <li>Android Auto / Apple CarPlay</li>
+            <li>Includes two sets of tires (Winter & Summer: never used)</li>
+            <li>Rear camera</li>
+            <li>Board Computer</li>
+            <li>Rain and Light sensors</li>			
+            <li>Hill Start Assist</li>
+            <li>ASC + TCL + ABS + EBD</li>
+            <li>Eletric and Heated Mirrors</li>
+        </ul>
     </div>
+</div>
 
-    <div class="footer">
-      Página pessoal no GitHub Pages
-    </div>
-  </div>
+<div id="lightbox" class="lightbox" onclick="closeZoom()">
+    <img id="lightbox-img" src="" alt="Zoomed View">
+</div>
+
+<script>
+    function zoomImage(element) {
+        const imgSrc = element.querySelector('img').src;
+        document.getElementById('lightbox-img').src = imgSrc;
+        document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function closeZoom() {
+        document.getElementById('lightbox').style.display = 'none';
+    }
+
+    // Close lightbox on Escape key press
+    document.addEventListener('keydown', function(e) {
+        if (e.key === "Escape") {
+            closeZoom();
+        }
+    });
+</script>
+
 </body>
 </html>
